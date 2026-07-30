@@ -11,3 +11,9 @@ client-user/node_modules/
 client-user/dist/
 client-admin/node_modules/
 client-admin/dist/
+
+flavours_bob (1).db*
+server.log
+public/
+client/dist/
+client/node_modules/
