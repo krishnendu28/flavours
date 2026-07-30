@@ -1,0 +1,13 @@
+node_modules/
+flavours_bob.db
+flavours_bob.db-shm
+flavours_bob.db-wal
+.env
+*.log
+dist/
+client/node_modules/
+client/dist/
+client-user/node_modules/
+client-user/dist/
+client-admin/node_modules/
+client-admin/dist/
