@@ -61,6 +61,8 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Install dependencies
         run: npm ci
+      - name: Configure EAS project
+        run: npx eas init --non-interactive
       - name: Trigger EAS build
         run: |
           PROFILE="${{ github.event.inputs.profile || 'production' }}"

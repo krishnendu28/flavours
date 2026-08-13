@@ -2,6 +2,7 @@
   "expo": {
     "name": "Flavours BOB",
     "slug": "app-user",
+    "owner": "mayank8159",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
