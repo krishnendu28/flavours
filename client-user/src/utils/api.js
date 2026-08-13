@@ -19,9 +19,10 @@ async function request(path, options = {}) {
     ...options.headers,
   };
   const res = await fetch(url, { headers, ...options });
-  const data = await res.json().catch(() => ({}));
+  const data = await res.json().catch(() => null);
   if (res.status === 401) setToken('');
-  if (!res.ok) throw new Error(data.error || 'Request failed');
+  if (!res.ok) throw new Error(data?.error || 'Request failed');
+  if (data === null) throw new Error(`Unexpected response from ${url} (${res.status})`);
   return data;
 }
 

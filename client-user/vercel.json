@@ -1,3 +1,6 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://w7mk9wtj70.execute-api.ap-south-1.amazonaws.com/dev/api/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }

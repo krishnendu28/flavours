@@ -78,12 +78,18 @@ DYNAMODB_ENDPOINT=http://localhost:8000
 
 Both web apps (`client-user`, `client-admin`) read `import.meta.env.VITE_API_URL`
 (defaults to `/api`). For local development Vite proxies `/api` to the
-`serverless-offline` REST API on `:3001`, so no env is needed. When building for
-production, point it at the stack's `ApiUrl` output:
+`serverless-offline` REST API on `:3001`, so no env is needed.
+
+When building for production, set `VITE_API_URL` to the stack's `ApiUrl` output
+**plus the `/api` suffix** — the routes are served under `/api/*`:
 
 ```
-VITE_API_URL=https://<api-id>.execute-api.<region>.amazonaws.com/<stage>
+VITE_API_URL=https://<api-id>.execute-api.<region>.amazonaws.com/<stage>/api
 ```
+
+All REST routes have CORS enabled, so browser apps hosted elsewhere (e.g.
+Vercel) can call the API directly — no proxy needed. Remember to redeploy after
+`cors: true` is added to `serverless.yml`:
 
 ### Real-time (WebSockets)
 

@@ -62,57 +62,77 @@ functions:
   api:
     handler: src/handler.handler
     events:
+      # cors: true enables browser cross-origin access (frontends deployed on
+      # Vercel etc. call this API directly). OPTIONS preflight is handled by
+      # API Gateway automatically.
       - http:
           path: api/health
           method: get
+          cors: true
       - http:
           path: api/auth/send-otp
           method: post
+          cors: true
       - http:
           path: api/auth/verify-otp
           method: post
+          cors: true
       - http:
           path: api/admin/login
           method: post
+          cors: true
       - http:
           path: api/menu/categories
           method: get
+          cors: true
       - http:
           path: api/menu/items
           method: get
+          cors: true
       - http:
           path: api/menu/items
           method: post
+          cors: true
       - http:
           path: api/menu/items/{id}
           method: get
+          cors: true
       - http:
           path: api/menu/items/{id}
           method: put
+          cors: true
       - http:
           path: api/menu/items/{id}
           method: delete
+          cors: true
       - http:
           path: api/orders
           method: get
+          cors: true
       - http:
           path: api/orders
           method: post
+          cors: true
       - http:
           path: api/orders/user/{userId}
           method: get
+          cors: true
       - http:
           path: api/orders/{id}
           method: get
+          cors: true
       - http:
           path: api/orders/{id}/status
           method: put
+          cors: true
       - http:
           path: api/pos/orders
           method: post
+          cors: true
       - http:
           path: api/users/push-token
           method: put
+          cors: true
 
   wsConnect:
     handler: src/ws.connect
