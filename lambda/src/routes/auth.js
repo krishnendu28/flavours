@@ -22,8 +22,12 @@ async function sendOtp({ body }) {
     return fail('Valid phone number required', 400);
   }
 
-  if (!(await otp.canSend(phone))) {
+  const blocked = await otp.canSend(phone);
+  if (blocked === 'cooldown') {
     return fail('Wait 30 seconds before requesting a new OTP', 429);
+  }
+  if (blocked === 'daily-limit') {
+    return fail('Daily OTP limit reached for this number', 429);
   }
 
   const code = otp.generateOtp();

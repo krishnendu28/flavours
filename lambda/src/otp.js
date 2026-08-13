@@ -3,6 +3,7 @@ const db = require('./db');
 const COOLDOWN_MS = 30 * 1000;
 const VALIDITY_MS = 5 * 60 * 1000;
 const MAX_ATTEMPTS = 5;
+const DAILY_LIMIT = 10;
 
 function generateOtp() {
   return String(Math.floor(100000 + Math.random() * 900000));
@@ -13,15 +14,26 @@ async function getOtpRecord(phone) {
   return res.Item || null;
 }
 
-// Returns true when a new OTP may be issued for this phone.
+function today() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+// Returns a reason string when a new OTP may NOT be issued for this phone,
+// or null when it may: 'cooldown' or 'daily-limit'.
 async function canSend(phone) {
   const rec = await getOtpRecord(phone);
-  if (rec && rec.sent_at && Date.now() - rec.sent_at < COOLDOWN_MS) return false;
-  return true;
+  if (rec && rec.sent_at && Date.now() - rec.sent_at < COOLDOWN_MS) return 'cooldown';
+  if (rec && rec.sent_date === today() && (rec.sent_count || 0) >= DAILY_LIMIT) {
+    return 'daily-limit';
+  }
+  return null;
 }
 
 async function storeOtp(phone, otp) {
   const now = Date.now();
+  const day = today();
+  const prev = await getOtpRecord(phone);
+  const sentCount = prev && prev.sent_date === day ? (prev.sent_count || 0) + 1 : 1;
   await db.doc.send(
     new db.PutCommand({
       TableName: db.tables.otps,
@@ -31,6 +43,8 @@ async function storeOtp(phone, otp) {
         used: 0,
         attempts: 0,
         sent_at: now,
+        sent_date: day,
+        sent_count: sentCount,
         expires_at: Math.floor((now + VALIDITY_MS) / 1000), // epoch seconds -> DynamoDB TTL
       },
     })

@@ -46,7 +46,9 @@ async function nextCounter(name) {
 
 // Daily KOT number, e.g. kot:2026-08-13 -> 1, 2, 3 ...
 async function nextKotNumber() {
-  const today = new Date().toISOString().slice(0, 10);
+  // Restaurants run on local (IST) time, so the KOT day boundary is midnight IST,
+  // not midnight UTC.
+  const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
   return nextCounter(`kot:${today}`);
 }
 

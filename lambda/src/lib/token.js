@@ -3,7 +3,12 @@ const crypto = require('crypto');
 // JWT-like HMAC-signed tokens (no external dependency).
 // Payload: { sub, role, iat, exp } where sub is the user/admin id.
 
-const SECRET = process.env.AUTH_SECRET || 'dev-only-insecure-secret';
+const SECRET =
+  process.env.AUTH_SECRET || (process.env.STAGE === 'prod' ? undefined : 'dev-only-insecure-secret');
+if (!SECRET) {
+  // Fail fast: a known secret would let anyone forge admin tokens.
+  throw new Error('AUTH_SECRET must be set when STAGE=prod');
+}
 
 function b64urlEncode(str) {
   return Buffer.from(str, 'utf8').toString('base64url');

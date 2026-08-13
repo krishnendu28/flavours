@@ -19,8 +19,9 @@ provider:
     ADMINS_TABLE: ${self:custom.tablePrefix}-admins
     CONNECTIONS_TABLE: ${self:custom.tablePrefix}-connections
     COUNTERS_TABLE: ${self:custom.tablePrefix}-counters
-    AUTH_SECRET: ${env:AUTH_SECRET, 'dev-only-insecure-secret'}
+    AUTH_SECRET: ${env:AUTH_SECRET, ''}
     EXPO_PUSH_ACCESS_TOKEN: ${env:EXPO_PUSH_ACCESS_TOKEN, ''}
+    STAGE: ${self:provider.stage}
     WS_ENDPOINT: !Sub 'https://${WebsocketsApi}.execute-api.${AWS::Region}.amazonaws.com/${self:provider.stage}'
   iamRoleStatements:
     - Effect: Allow

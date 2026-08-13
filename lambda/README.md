@@ -76,8 +76,10 @@ DYNAMODB_ENDPOINT=http://localhost:8000
 
 ### REST API
 
-The three React apps already read `import.meta.env.VITE_API_URL`. Point it at
-`ApiUrl` when building/deploying:
+Both web apps (`client-user`, `client-admin`) read `import.meta.env.VITE_API_URL`
+(defaults to `/api`). For local development Vite proxies `/api` to the
+`serverless-offline` REST API on `:3001`, so no env is needed. When building for
+production, point it at the stack's `ApiUrl` output:
 
 ```
 VITE_API_URL=https://<api-id>.execute-api.<region>.amazonaws.com/<stage>
@@ -85,35 +87,42 @@ VITE_API_URL=https://<api-id>.execute-api.<region>.amazonaws.com/<stage>
 
 ### Real-time (WebSockets)
 
-The old `socket.io` clients no longer work against API Gateway WebSockets.
-Replace the socket layer (e.g. `client-admin/src/contexts/SocketContext.jsx`)
-with a plain `WebSocket` client:
+`client-user` and `client-admin` connect with a native `WebSocket` client
+(`client-user/src/contexts/SocketContext.jsx` and
+`client-admin/src/contexts/SocketContext.jsx`) — no Socket.IO. Configure the
+endpoint at build time:
 
-```js
-const ws = new WebSocket(WsUrl); // wss://...
-
-// join a room the same way the old code did
-ws.send(JSON.stringify({ action: 'join-admin' }));   // or 'join-kitchen'
-ws.send(JSON.stringify({ action: 'join-kitchen' }));
-
-ws.onmessage = (e) => {
-  const { event, data } = JSON.parse(e.data);
-  switch (event) {
-    case 'new-order':            // everyone
-    case 'order-updated':        // everyone
-    case 'menu-updated':         // everyone
-    case 'menu-item-added':      // everyone
-    case 'menu-item-deleted':    // everyone
-    case 'order-alert':          // admin room
-    case 'kitchen-new-order':    // kitchen room
-    case 'kitchen-order-updated' // kitchen room
-      handle(event, data);
-  }
-};
+```
+VITE_WS_URL=wss://<ws-api-id>.execute-api.<region>.amazonaws.com/<stage>   # = WsUrl output
 ```
 
-Event names and payload shapes are identical to the old Socket.IO events, so the
-rest of the page code (buzzer hook, order lists, menu live-update) can stay as is.
+Local development: leave `VITE_WS_URL` unset (defaults to `ws://localhost:3002`,
+the `serverless-offline` WebSocket API). Also set `WS_ENDPOINT=http://localhost:3002`
+in `lambda/.env` so `broadcast()` can push events to the offline WS server.
+
+Admin rooms require a valid admin JWT (token from `POST /api/admin/login`, kept
+in `localStorage['flavours_token']`). The client sends it with the join action:
+
+```js
+ws.send(JSON.stringify({ action: 'join-admin', token: '<admin JWT>' }));
+ws.send(JSON.stringify({ action: 'join-kitchen', token: '<admin JWT>' }));
+```
+
+Incoming messages are `{ event, data }` and are dispatched to handlers registered
+with `on(event, handler)`. Event names and payload shapes are identical to the
+old Socket.IO events, so page code (buzzer hook, order lists, menu live-update)
+works unchanged:
+
+| event                    | audience     |
+| ------------------------ | ------------ |
+| `new-order`              | everyone     |
+| `order-updated`          | everyone     |
+| `menu-updated`           | everyone     |
+| `menu-item-added`        | everyone     |
+| `menu-item-deleted`      | everyone     |
+| `order-alert`            | admin room   |
+| `kitchen-new-order`      | kitchen room |
+| `kitchen-order-updated`  | kitchen room |
 
 ### Push notifications (Expo / mobile app)
 

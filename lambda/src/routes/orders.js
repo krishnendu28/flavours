@@ -178,13 +178,28 @@ async function notifyUser(order, title, body) {
 }
 
 async function saveOrder(order) {
+  let enriched;
+  try {
+    enriched = await enrichOrder(order);
+  } catch (err) {
+    console.error('[orders] enrich failed (saving as-is):', err.message);
+    enriched = order;
+  }
+
+  // The order write is the single source of truth. Any later notification
+  // failure must not turn a persisted order into an error for the client
+  // (that would cause duplicate orders on retry).
   await db.doc.send(new db.PutCommand({ TableName: db.tables.orders, Item: order }));
-  const enriched = await enrichOrder(order);
-  await broadcast('new-order', enriched);
-  await broadcast('kitchen-new-order', enriched, ['kitchen']);
-  await broadcast('order-alert', enriched, ['admin']);
-  if (order.user_id) {
-    await notifyUser(order, `Order ${order.id}`, 'Your order has been placed and is awaiting confirmation.');
+
+  try {
+    await broadcast('new-order', enriched);
+    await broadcast('kitchen-new-order', enriched, ['kitchen']);
+    await broadcast('order-alert', enriched, ['admin']);
+    if (order.user_id) {
+      await notifyUser(order, `Order ${order.id}`, 'Your order has been placed and is awaiting confirmation.');
+    }
+  } catch (err) {
+    console.error('[orders] post-save notifications failed (order persisted):', err.message);
   }
   return ok(enriched);
 }
@@ -269,6 +284,13 @@ async function updateStatus({ params, body }) {
     return fail('Invalid status', 400);
   }
 
+  // Check existence before writing: a DynamoDB UpdateItem on a missing key
+  // would otherwise create a junk order row.
+  const existing = await db.doc.send(
+    new db.GetCommand({ TableName: db.tables.orders, Key: { id: params.id } })
+  );
+  if (!existing.Item) return fail('Order not found', 404);
+
   await db.doc.send(
     new db.UpdateCommand({
       TableName: db.tables.orders,
@@ -276,23 +298,26 @@ async function updateStatus({ params, body }) {
       UpdateExpression: 'SET #s = :status, updated_at = :updated',
       ExpressionAttributeNames: { '#s': 'status' },
       ExpressionAttributeValues: { ':status': status, ':updated': new Date().toISOString() },
+      ConditionExpression: 'attribute_exists(id)',
     })
   );
 
-  const res = await db.doc.send(
-    new db.GetCommand({ TableName: db.tables.orders, Key: { id: params.id } })
-  );
-  if (!res.Item) return fail('Order not found', 404);
+  const order = await enrichOrder(existing.Item);
+  order.status = status;
+  order.updated_at = new Date().toISOString();
 
-  const order = await enrichOrder(res.Item);
-  await broadcast('order-updated', order);
-  await broadcast('kitchen-order-updated', order, ['kitchen']);
-  if (order.user_id) {
-    await notifyUser(
-      order,
-      `Order ${order.id}`,
-      `Your order ${PUSH_STATUS_TEXT[status] || 'was updated'}.`
-    );
+  try {
+    await broadcast('order-updated', order);
+    await broadcast('kitchen-order-updated', order, ['kitchen']);
+    if (order.user_id) {
+      await notifyUser(
+        order,
+        `Order ${order.id}`,
+        `Your order ${PUSH_STATUS_TEXT[status] || 'was updated'}.`
+      );
+    }
+  } catch (err) {
+    console.error('[orders] status-change notifications failed (order updated):', err.message);
   }
   return ok(order);
 }

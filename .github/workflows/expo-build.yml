@@ -1,0 +1,78 @@
+name: Expo Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: 'EAS build profile (preview = APK, production = AAB)'
+        type: choice
+        options:
+          - preview
+          - production
+        default: preview
+  pull_request:
+    paths:
+      - 'app-user/**'
+      - '.github/workflows/expo-build.yml'
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  validate:
+    name: Validate Expo project
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app-user
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: app-user/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Run expo-doctor
+        run: npx expo-doctor
+      - name: Verify Android bundle compiles
+        run: npx expo export --platform android --output-dir dist-ci
+
+  build:
+    name: Build Android (${{ github.event.inputs.profile || 'production' }})
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app-user
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: app-user/package-lock.json
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Trigger EAS build
+        run: |
+          PROFILE="${{ github.event.inputs.profile || 'production' }}"
+          echo "Building with profile: $PROFILE"
+          eas build --platform android --profile "$PROFILE" --non-interactive --message "CI build for $GITHUB_SHA"
+      - name: Download build artifact
+        run: |
+          PROFILE="${{ github.event.inputs.profile || 'production' }}"
+          eas build:download --platform android --profile "$PROFILE" --output-directory artifacts --non-interactive
+      - name: Upload APK/AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-${{ github.event.inputs.profile || 'production' }}-build
+          path: app-user/artifacts
+          if-no-files-found: error

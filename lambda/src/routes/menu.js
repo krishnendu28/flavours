@@ -4,6 +4,11 @@ const { broadcast } = require('../broadcast');
 
 const SORT = (a, b) => (a.sort_order || 0) - (b.sort_order || 0);
 
+// A valid non-negative finite number (id/category_id are integers, price is a number).
+function badNumber(v) {
+  return v === undefined || v === null || !Number.isFinite(Number(v)) || Number(v) < 0;
+}
+
 async function listCategories() {
   const res = await db.doc.send(new db.ScanCommand({ TableName: db.tables.categories }));
   return ok((res.Items || []).sort(SORT));
@@ -14,12 +19,14 @@ async function listItems({ query }) {
   let items;
 
   if (category_id) {
+    if (badNumber(category_id)) return fail('Invalid category_id', 400);
+    const cid = Number(category_id);
     const res = await db.doc.send(
       new db.QueryCommand({
         TableName: db.tables.menuItems,
         IndexName: 'category-index',
         KeyConditionExpression: 'category_id = :cid',
-        ExpressionAttributeValues: { ':cid': Number(category_id) },
+        ExpressionAttributeValues: { ':cid': cid },
       })
     );
     items = res.Items || [];
@@ -33,6 +40,7 @@ async function listItems({ query }) {
 }
 
 async function getItem({ params }) {
+  if (badNumber(params.id)) return fail('Invalid item id', 400);
   const res = await db.doc.send(
     new db.GetCommand({ TableName: db.tables.menuItems, Key: { id: Number(params.id) } })
   );
@@ -41,6 +49,7 @@ async function getItem({ params }) {
 }
 
 async function updateItem({ params, body }) {
+  if (badNumber(params.id)) return fail('Invalid item id', 400);
   const id = Number(params.id);
   const existing = await db.doc.send(
     new db.GetCommand({ TableName: db.tables.menuItems, Key: { id } })
@@ -60,8 +69,14 @@ async function updateItem({ params, body }) {
     code,
   } = body || {};
 
-  if (price !== undefined && (isNaN(price) || price < 0)) {
+  if (price !== undefined && (badNumber(price) || Number(price) > Number.MAX_SAFE_INTEGER)) {
     return fail('Invalid price', 400);
+  }
+  if (category_id !== undefined && badNumber(category_id)) {
+    return fail('Invalid category_id', 400);
+  }
+  if (code !== undefined && badNumber(code)) {
+    return fail('Invalid code', 400);
   }
 
   const updates = {};
@@ -98,13 +113,19 @@ async function updateItem({ params, body }) {
 
 async function createItem({ body }) {
   const { name, description, price, category_id, image_url } = body || {};
-  if (!name || price === undefined || price === null || !category_id) {
-    return fail('Name, price, and category_id required', 400);
+  if (!name || typeof name !== 'string' || !name.trim()) {
+    return fail('Name is required', 400);
+  }
+  if (badNumber(price)) {
+    return fail('Invalid price', 400);
+  }
+  if (badNumber(category_id)) {
+    return fail('Invalid category_id', 400);
   }
 
   const item = {
     id: await db.nextCounter('menu_item_id'),
-    name,
+    name: name.trim(),
     description: description || '',
     price: Number(price),
     category_id: Number(category_id),

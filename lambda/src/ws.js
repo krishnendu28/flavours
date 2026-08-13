@@ -1,6 +1,8 @@
 const db = require('./db');
+const { verify } = require('./lib/token');
 
-// Client sends: { "action": "join-admin" } or { "action": "join-kitchen" }.
+// Client sends: { "action": "join-admin", "token": "<admin JWT>" } or
+// { "action": "join-kitchen", "token": "<admin JWT>" }.
 // AWS routes every non-$connect/$disconnect message to $default.
 
 function respond(statusCode, body) {
@@ -71,6 +73,14 @@ exports.default = async (event) => {
 
   const action = message.action || '';
   if (action === 'join-admin' || action === 'join-kitchen') {
+    // Restricted rooms are for restaurant staff only. Validate the caller's
+    // admin token before granting access, otherwise anyone with the WSS URL
+    // could subscribe to every order broadcast.
+    const payload = verify(message.token);
+    if (!payload || payload.role !== 'admin') {
+      console.warn('[ws] rejected join:', connectionId, action);
+      return respond(403, { error: 'Forbidden: admin token required' });
+    }
     const room = action === 'join-admin' ? 'admin' : 'kitchen';
     await joinRoom(connectionId, room);
     console.log('[ws] connection joined room:', connectionId, room);
