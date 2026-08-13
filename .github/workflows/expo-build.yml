@@ -62,7 +62,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Configure EAS project
-        run: npx eas init --non-interactive
+        run: npx eas init --account mayank8159 --non-interactive
       - name: Trigger EAS build
         run: |
           PROFILE="${{ github.event.inputs.profile || 'production' }}"
