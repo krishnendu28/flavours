@@ -11,6 +11,7 @@ export default function Login() {
   const [name, setName] = useState('');
   const [otp, setOtp] = useState('');
   const [error, setError] = useState('');
+  const [notification, setNotification] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSendOtp = async (e) => {
@@ -18,9 +19,12 @@ export default function Login() {
     if (!name.trim()) { setError('Name is required'); return; }
     if (phone.length < 10) { setError('Enter a valid phone number'); return; }
     setError('');
+    setNotification('');
     setLoading(true);
     try {
       const res = await api.sendOtp(phone);
+      setOtp(res.otp || '');
+      setNotification(res.otp ? `Your OTP is ${res.otp}` : 'OTP sent');
       setStep('otp');
     } catch (err) {
       setError(err.message);
@@ -50,11 +54,17 @@ export default function Login() {
         <p className="subtitle">
           {step === 'phone'
             ? 'Enter your details to get started'
-            : `OTP sent to ${phone}`
+            : `Check the in-app notification for ${phone}`
           }
         </p>
 
         {error && <div className="toast error" style={{ position: 'static', marginBottom: 16, width: '100%' }}>{error}</div>}
+
+        {notification && (
+          <div className="toast success" style={{ position: 'static', marginBottom: 16, width: '100%' }}>
+            🔔 {notification}
+          </div>
+        )}
 
         {step === 'phone' ? (
           <form onSubmit={handleSendOtp}>
@@ -104,7 +114,7 @@ export default function Login() {
               type="button"
               className="btn btn-ghost"
               style={{ marginTop: 8 }}
-              onClick={() => { setStep('phone'); setOtp(''); setError(''); }}
+              onClick={() => { setStep('phone'); setOtp(''); setError(''); setNotification(''); }}
             >
               Change Number
             </button>

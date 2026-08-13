@@ -1,21 +1,44 @@
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
+const TOKEN_KEY = 'flavours_token';
+
+function getToken() {
+  return localStorage.getItem(TOKEN_KEY) || '';
+}
+
+function setToken(token) {
+  if (token) localStorage.setItem(TOKEN_KEY, token);
+  else localStorage.removeItem(TOKEN_KEY);
+}
 
 async function request(path, options = {}) {
   const url = `${API_BASE}${path}`;
-  const res = await fetch(url, {
-    headers: { 'Content-Type': 'application/json', ...options.headers },
-    ...options,
-  });
-  const data = await res.json();
+  const token = getToken();
+  const headers = {
+    'Content-Type': 'application/json',
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...options.headers,
+  };
+  const res = await fetch(url, { headers, ...options });
+  const data = await res.json().catch(() => ({}));
+  if (res.status === 401) setToken('');
   if (!res.ok) throw new Error(data.error || 'Request failed');
   return data;
 }
 
 export const api = {
   sendOtp: (phone) => request('/auth/send-otp', { method: 'POST', body: JSON.stringify({ phone }) }),
-  verifyOtp: (phone, otp, name) => request('/auth/verify-otp', { method: 'POST', body: JSON.stringify({ phone, otp, name }) }),
 
-  adminLogin: (username, password) => request('/admin/login', { method: 'POST', body: JSON.stringify({ username, password }) }),
+  verifyOtp: async (phone, otp, name) => {
+    const res = await request('/auth/verify-otp', { method: 'POST', body: JSON.stringify({ phone, otp, name }) });
+    setToken(res.token);
+    return res;
+  },
+
+  adminLogin: async (username, password) => {
+    const res = await request('/admin/login', { method: 'POST', body: JSON.stringify({ username, password }) });
+    setToken(res.token);
+    return res;
+  },
 
   getCategories: () => request('/menu/categories'),
   getMenuItems: (categoryId) => request(`/menu/items${categoryId ? `?category_id=${categoryId}` : ''}`),

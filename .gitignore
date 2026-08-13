@@ -1,19 +1,14 @@
 node_modules/
-flavours_bob.db
-flavours_bob.db-shm
-flavours_bob.db-wal
 .env
 *.log
 dist/
-client/node_modules/
-client/dist/
+
+# user app
+app-user/node_modules/
+app-user/dist/
+
+# web frontends
 client-user/node_modules/
 client-user/dist/
 client-admin/node_modules/
 client-admin/dist/
-
-flavours_bob (1).db*
-server.log
-public/
-client/dist/
-client/node_modules/

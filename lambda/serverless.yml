@@ -1,0 +1,283 @@
+service: flavours-bob-api
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ${env:AWS_REGION, 'ap-south-1'}
+  stage: ${opt:stage, 'dev'}
+  memorySize: 512
+  timeout: 30
+  logRetentionInDays: 14
+  environment:
+    USERS_TABLE: ${self:custom.tablePrefix}-users
+    OTPS_TABLE: ${self:custom.tablePrefix}-otps
+    CATEGORIES_TABLE: ${self:custom.tablePrefix}-categories
+    MENU_ITEMS_TABLE: ${self:custom.tablePrefix}-menu-items
+    ORDERS_TABLE: ${self:custom.tablePrefix}-orders
+    ADMINS_TABLE: ${self:custom.tablePrefix}-admins
+    CONNECTIONS_TABLE: ${self:custom.tablePrefix}-connections
+    COUNTERS_TABLE: ${self:custom.tablePrefix}-counters
+    AUTH_SECRET: ${env:AUTH_SECRET, 'dev-only-insecure-secret'}
+    EXPO_PUSH_ACCESS_TOKEN: ${env:EXPO_PUSH_ACCESS_TOKEN, ''}
+    WS_ENDPOINT: !Sub 'https://${WebsocketsApi}.execute-api.${AWS::Region}.amazonaws.com/${self:provider.stage}'
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:BatchGetItem
+      Resource:
+        - !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${self:custom.tablePrefix}-*'
+    - Effect: Allow
+      Action:
+        - execute-api:Invoke
+      Resource: !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${WebsocketsApi}/*'
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+
+custom:
+  tablePrefix: ${env:TABLE_PREFIX, 'flavours-bob'}
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: false
+    target: node18
+    platform: node
+    concurrency: 4
+  serverless-offline:
+    httpPort: 3001
+    lambdaPort: 4002
+    websocketPort: 3002
+
+functions:
+  api:
+    handler: src/handler.handler
+    events:
+      - http:
+          path: api/health
+          method: get
+      - http:
+          path: api/auth/send-otp
+          method: post
+      - http:
+          path: api/auth/verify-otp
+          method: post
+      - http:
+          path: api/admin/login
+          method: post
+      - http:
+          path: api/menu/categories
+          method: get
+      - http:
+          path: api/menu/items
+          method: get
+      - http:
+          path: api/menu/items
+          method: post
+      - http:
+          path: api/menu/items/{id}
+          method: get
+      - http:
+          path: api/menu/items/{id}
+          method: put
+      - http:
+          path: api/menu/items/{id}
+          method: delete
+      - http:
+          path: api/orders
+          method: get
+      - http:
+          path: api/orders
+          method: post
+      - http:
+          path: api/orders/user/{userId}
+          method: get
+      - http:
+          path: api/orders/{id}
+          method: get
+      - http:
+          path: api/orders/{id}/status
+          method: put
+      - http:
+          path: api/pos/orders
+          method: post
+      - http:
+          path: api/users/push-token
+          method: put
+
+  wsConnect:
+    handler: src/ws.connect
+    events:
+      - websocket:
+          route: $connect
+      - websocket:
+          route: $disconnect
+
+  wsDefault:
+    handler: src/ws.default
+    events:
+      - websocket:
+          route: $default
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tablePrefix}-users
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: phone
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: phone-index
+            KeySchema:
+              - AttributeName: phone
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+
+    OtpsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tablePrefix}-otps
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: phone
+            AttributeType: S
+        KeySchema:
+          - AttributeName: phone
+            KeyType: HASH
+        TimeToLiveSpecification:
+          AttributeName: expires_at
+          Enabled: true
+
+    CategoriesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tablePrefix}-categories
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: N
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+
+    MenuItemsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tablePrefix}-menu-items
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: N
+          - AttributeName: category_id
+            AttributeType: N
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: category-index
+            KeySchema:
+              - AttributeName: category_id
+                KeyType: HASH
+              - AttributeName: id
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+
+    OrdersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tablePrefix}-orders
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: pk
+            AttributeType: S
+          - AttributeName: user_id
+            AttributeType: S
+          - AttributeName: created_at
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: all-orders-index
+            KeySchema:
+              - AttributeName: pk
+                KeyType: HASH
+              - AttributeName: created_at
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+          - IndexName: user-orders-index
+            KeySchema:
+              - AttributeName: user_id
+                KeyType: HASH
+              - AttributeName: created_at
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+
+    AdminsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tablePrefix}-admins
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: username
+            KeyType: HASH
+
+    ConnectionsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tablePrefix}-connections
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: connectionId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: connectionId
+            KeyType: HASH
+        TimeToLiveSpecification:
+          AttributeName: ttl
+          Enabled: true
+
+    CountersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tablePrefix}-counters
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: name
+            AttributeType: S
+        KeySchema:
+          - AttributeName: name
+            KeyType: HASH
+
+  Outputs:
+    ApiUrl:
+      Description: REST API Gateway endpoint
+      Value: !Sub 'https://${ApiGatewayRestApi}.execute-api.${AWS::Region}.amazonaws.com/${self:provider.stage}'
+    WsUrl:
+      Description: WebSocket API endpoint
+      Value: !Sub 'wss://${WebsocketsApi}.execute-api.${AWS::Region}.amazonaws.com/${self:provider.stage}'
