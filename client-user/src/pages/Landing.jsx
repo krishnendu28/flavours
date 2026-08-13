@@ -22,7 +22,7 @@ export default function Landing() {
             Flavours <span className="logo-accent">BOB</span>
           </div>
           <div className="header-nav">
-            <a href="/admin/login">Admin</a>
+            <a href={import.meta.env.DEV ? 'http://localhost:5174/admin/login' : '/admin/login'}>Admin</a>
           </div>
         </div>
       </header>

@@ -67,11 +67,14 @@ jobs:
         run: |
           PROFILE="${{ github.event.inputs.profile || 'production' }}"
           echo "Building with profile: $PROFILE"
-          eas build --platform android --profile "$PROFILE" --non-interactive --message "CI build for $GITHUB_SHA"
+          eas build --platform android --profile "$PROFILE" --non-interactive --json --message "CI build for $GITHUB_SHA" > build-output.json
+          BUILD_ID=$(jq -r '.id' build-output.json)
+          echo "BUILD_ID=$BUILD_ID" >> "$GITHUB_ENV"
       - name: Download build artifact
         run: |
-          PROFILE="${{ github.event.inputs.profile || 'production' }}"
-          eas build:download --platform android --profile "$PROFILE" --output-directory artifacts --non-interactive
+          eas build:download --build-id "$BUILD_ID" --non-interactive
+          mkdir -p artifacts
+          find . -maxdepth 1 \( -name "*.apk" -o -name "*.aab" \) -exec mv -t artifacts {} +
       - name: Upload APK/AAB artifact
         uses: actions/upload-artifact@v4
         with:
