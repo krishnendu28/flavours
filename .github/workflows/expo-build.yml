@@ -68,7 +68,7 @@ jobs:
           PROFILE="${{ github.event.inputs.profile || 'production' }}"
           echo "Building with profile: $PROFILE"
           eas build --platform android --profile "$PROFILE" --non-interactive --json --message "CI build for $GITHUB_SHA" > build-output.json
-          BUILD_ID=$(jq -r '.id' build-output.json)
+          BUILD_ID=$(jq -r 'if type=="array" then .[0].id else .id end' build-output.json)
           echo "BUILD_ID=$BUILD_ID" >> "$GITHUB_ENV"
       - name: Download build artifact
         run: |
