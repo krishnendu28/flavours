@@ -72,9 +72,13 @@ jobs:
           echo "BUILD_ID=$BUILD_ID" >> "$GITHUB_ENV"
       - name: Download build artifact
         run: |
-          eas build:download --build-id "$BUILD_ID" --non-interactive
           mkdir -p artifacts
-          find . -maxdepth 1 \( -name "*.apk" -o -name "*.aab" \) -exec mv -t artifacts {} +
+          PROFILE="${{ github.event.inputs.profile || 'production' }}"
+          EXT="aab"
+          if [ "$PROFILE" = "preview" ]; then
+            EXT="apk"
+          fi
+          eas build:download --build-id "$BUILD_ID" --non-interactive --path "artifacts/android-$PROFILE.$EXT"
       - name: Upload APK/AAB artifact
         uses: actions/upload-artifact@v4
         with:
