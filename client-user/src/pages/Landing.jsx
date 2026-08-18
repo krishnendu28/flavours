@@ -3,12 +3,11 @@ import { useAuth } from '../contexts/AuthContext';
 
 export default function Landing() {
   const navigate = useNavigate();
-  const { user, selectOrderType } = useAuth();
+  const { selectOrderType } = useAuth();
 
   const handleSelect = (type) => {
     selectOrderType(type);
-    if (user) navigate('/menu');
-    else navigate('/login');
+    navigate('/menu');
   };
 
   return (

@@ -160,8 +160,8 @@ app.delete('/api/menu/items/:id', (req, res) => {
 // ─── ONLINE ORDERS ─────────────────────────────────────────
 app.post('/api/orders', (req, res) => {
   const { user_id, order_type, items, block, area, flat_number, room_number, special_instructions } = req.body;
-  if (!user_id || !order_type || !items || items.length === 0) {
-    return res.status(400).json({ error: 'User, order type, and items required' });
+  if (!order_type || !items || items.length === 0) {
+    return res.status(400).json({ error: 'Order type and items required' });
   }
 
   let total = 0;

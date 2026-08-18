@@ -17,3 +17,14 @@ server.log
 public/
 client/dist/
 client/node_modules/
+
+# Nursing Care Classes apps
+student-app/node_modules/
+student-app/.next/
+student-app/.env
+student-app/next-env.d.ts
+admin-app/node_modules/
+admin-app/.next/
+admin-app/.env
+admin-app/next-env.d.ts
+admin-app/public/uploads/

@@ -1,0 +1,423 @@
+{
+  "restaurant": "Flavours Battle of Buds",
+  "base_url": "https://www.flavoursbattleofbuds.in",
+  "image_base": "https://www.flavoursbattleofbuds.in",
+  "categories": [
+    {
+      "category_id": 6,
+      "category_name": "BIRYANI",
+      "item_count": 9,
+      "items": [
+        {"name": "COMBO EGG BIRYANI +CHAAP", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images20253.jpeg"},
+        {"name": "COMBO CHICKEN BIRYANI + CHAAP", "price": "RS. 230.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (1)34849.jpeg"},
+        {"name": "TIKKA HANDI BIRYANI", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Tikka h18649.jpg"},
+        {"name": "MUTTON HANDI BIRYANI", "price": "RS. 270.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Mut Handi B46214.jpg"},
+        {"name": "EXTRA CHICKEN PIECE", "price": "RS. 75.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/default.png"},
+        {"name": "CHICKEN HANDI BIRYANI", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Biryani16651.jpeg"},
+        {"name": "EGG HANDI BIRYANI", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Egg72854.jpeg"},
+        {"name": "RAITA", "price": "RS. 20.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Raita97236.jpg"},
+        {"name": "ONION SALAD", "price": "RS. 25.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Onion588611069.jpg"}
+      ]
+    },
+    {
+      "category_id": 7,
+      "category_name": "REGULAR THALI",
+      "item_count": 15,
+      "items": [
+        {"name": "REGULAR VEG THALI", "price": "RS. 100.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali94759.jpg"},
+        {"name": "REGULAR EGG THALI", "price": "RS. 120.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali78349.jpg"},
+        {"name": "REGULAR FISH THALI", "price": "RS. 155.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali63185.jpg"},
+        {"name": "REGULAR CHICKEN THALI", "price": "RS. 155.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali56447.jpg"},
+        {"name": "REGULAR MUTTON THALI", "price": "RS. 240.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/IMG_20231228_10222246259.jpg"},
+        {"name": "REGULAR PABDA THALI", "price": "RS. 210.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali40895.jpg"},
+        {"name": "REGULAR PRAWN THALI", "price": "RS. 210.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali7759.jpg"},
+        {"name": "REGULAR VEG THALI -ROTI", "price": "RS. 100.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali59165.jpg"},
+        {"name": "REGULAR EGG THALI-ROTI", "price": "RS. 120.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali43695.jpg"},
+        {"name": "REGULAR CHICKEN THALI -ROTI", "price": "RS. 155.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali11430.jpg"},
+        {"name": "REGULAR FISH THALI -ROTI", "price": "RS. 155.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali34974.jpg"},
+        {"name": "REGULAR MUTTON THALI-ROTI", "price": "RS. 240.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali18919.jpg"},
+        {"name": "JHURI ALU BHAJA", "price": "RS. 75.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/jhuri69591.jpg"},
+        {"name": "SHABJI DAL", "price": "RS. 50.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/dal9835.jpg"},
+        {"name": "REGULAR SHABJI", "price": "RS. 50.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/default.png"}
+      ]
+    },
+    {
+      "category_id": 8,
+      "category_name": "SPECIAL THALI",
+      "item_count": 9,
+      "items": [
+        {"name": "SPECIAL VEG THALI", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali81297.jpg"},
+        {"name": "SPECIAL EGG THALI", "price": "RS. 175.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali87486.jpg"},
+        {"name": "SPECIAL FISH THALI", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali11256.jpg"},
+        {"name": "SPECIAL CHICKEN THALI", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali57244.jpg"},
+        {"name": "SPECIAL VEG THALI-ROTI", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali59526.jpg"},
+        {"name": "SPECIAL EGG THALI-ROTI", "price": "RS. 175.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali68529.jpg"},
+        {"name": "SPECIAL FISH THALI-ROTI", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali65421.jpg"},
+        {"name": "SPECIAL CHICKEN THALI-ROTI", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Thali77875.jpg"},
+        {"name": "JHURI ALU BHAJA", "price": "RS. 75.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Jhuri Alu Bhaja34405.jpg"}
+      ]
+    },
+    {
+      "category_id": 9,
+      "category_name": "RICE",
+      "item_count": 19,
+      "items": [
+        {"name": "STEAMED RICE", "price": "RS. 50.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Steamed-Rice-Basmati50949.jpg"},
+        {"name": "JEERA RICE", "price": "RS. 90.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/jeera-rice-recipe73760.jpg"},
+        {"name": "SWEET PULAO", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Mishti-Pulao-2-1-1200x180040511.jpg"},
+        {"name": "VEG FRIED RICE", "price": "RS. 90.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-482077.jpg"},
+        {"name": "EGG FRIED RICE", "price": "RS. 105.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-442689.jpg"},
+        {"name": "CHICKEN FRIED RICE", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-429623.jpg"},
+        {"name": "EGG CHICKEN FRIED RICE", "price": "RS. 145.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-43458.jpg"},
+        {"name": "MUSHROOM FRIED RICE", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-466996.jpg"},
+        {"name": "PANEER FRIED RICE", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-495279.jpg"},
+        {"name": "PRAWN FRIED RICE", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-466570.jpg"},
+        {"name": "MIXED FRIED RICE", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-460540.jpg"},
+        {"name": "SCHEZWAN VEG FRIED RICE", "price": "RS. 105.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-469818.jpg"},
+        {"name": "SCHEZWAN EGG FRIED RICE", "price": "RS. 120.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-494923.jpg"},
+        {"name": "SCHEZWAN CHICKEN FRIED RICE", "price": "RS. 145.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-486649.jpg"},
+        {"name": "SCHEZWAN EGG CHICKEN FRIED RICE", "price": "RS. 160.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-410782.jpg"},
+        {"name": "SCHEZWAN MUSHROOM FRIED RICE", "price": "RS. 145.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-434556.jpg"},
+        {"name": "SCHEZWAN PANEER FRIED RICE", "price": "RS. 145.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-482615.jpg"},
+        {"name": "SCHEZWAN PRAWN FRIED RICE", "price": "RS. 165.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-410070.jpg"},
+        {"name": "SCHEZWAN MIXED FRIED RICE", "price": "RS. 205.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Veg-Fried-Rice-437859.jpg"}
+      ]
+    },
+    {
+      "category_id": 10,
+      "category_name": "NOODLES",
+      "item_count": 21,
+      "items": [
+        {"name": "VEG NOODLES", "price": "RS. 90.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles52788.jpg"},
+        {"name": "EGG NOODLES", "price": "RS. 105.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles47774.jpg"},
+        {"name": "CHICKEN NOODLES", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles49313.jpg"},
+        {"name": "EGG CHICKEN NOODLES", "price": "RS. 145.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles47715.jpg"},
+        {"name": "MUSHROOM NOODLES", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles70220.jpg"},
+        {"name": "PANEER NOODLES", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles19847.jpg"},
+        {"name": "PRAWN NOODLES", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles1715.jpg"},
+        {"name": "MIXED NOODLES", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles10873.jpg"},
+        {"name": "SCHEZWAN VEG NOODLES", "price": "RS. 105.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles27050.jpg"},
+        {"name": "SCHEZWAN EGG NOODLES", "price": "RS. 120.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles47826.jpg"},
+        {"name": "SCHEZWAN CHICKEN NOODLES", "price": "RS. 145.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles16774.jpg"},
+        {"name": "SCHEZWAN EGG CHICKEN NOODLES", "price": "RS. 160.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles59247.jpg"},
+        {"name": "SCHEZWAN MUSHROOM NOODLES", "price": "RS. 145.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles77220.jpg"},
+        {"name": "SCHEZWAN PANEER NOODLES", "price": "RS. 145.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles83923.jpg"},
+        {"name": "SCHEZWAN PRAWN NOODLES", "price": "RS. 165.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles25701.jpg"},
+        {"name": "SCHEZWAN MIXED NOODLES", "price": "RS. 205.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/veg-noodles-vegetable-noodles17243.jpg"},
+        {"name": "CHILLI GARLIC EGG NOODLES", "price": "RS. 125.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (2)46905.jpg"},
+        {"name": "CHILLI GARLIC VEG NOODLES", "price": "RS. 110.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (2)74842.jpg"},
+        {"name": "CHILLI GARLIC CHICKEN NOODLES", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (2)42977.jpg"},
+        {"name": "CHILLI GARLIC EGG CHICKEN NOODLES", "price": "RS. 165.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (2)3319.jpg"},
+        {"name": "CHILLI GARLIC MIXED NOODLES", "price": "RS. 210.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (2)5656.jpg"}
+      ]
+    },
+    {
+      "category_id": 11,
+      "category_name": "VEG STARTER",
+      "item_count": 8,
+      "items": [
+        {"name": "PANEER PAKADA", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/download (12)43417.jpg"},
+        {"name": "DRY VEG MANCHURIAN", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Dry vm16382.jpg"},
+        {"name": "DRY CHILLI VEG BALL", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/maxresdefault (5)17879.jpg"},
+        {"name": "CRISPY BABY CORN", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/light-baby-corn-manchurian-recipe86549.jpg"},
+        {"name": "DRY CHILLI MUSHROOM", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/maxresdefault (4)5953.jpg"},
+        {"name": "DRY CHILLI PANEER", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/maxresdefault (3)97714.jpg"},
+        {"name": "SOYA CHAAP PAKADA", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/maxresdefault13530.jpg"},
+        {"name": "CHILLI HONEY POTATO", "price": "RS. 160.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images28007.jpg"}
+      ]
+    },
+    {
+      "category_id": 12,
+      "category_name": "ROLL",
+      "item_count": 9,
+      "items": [
+        {"name": "DOUBLE EGG ROLL", "price": "RS. 50.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Roll20047.jpg"},
+        {"name": "CHICKEN ROLL", "price": "RS. 75.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Roll21857.jpg"},
+        {"name": "MUSHROOM ROLL", "price": "RS. 75.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Roll20640.jpg"},
+        {"name": "PANEER ROLL", "price": "RS. 75.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Roll39106.jpg"},
+        {"name": "EGG CHICKEN ROLL", "price": "RS. 90.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Roll91834.jpg"},
+        {"name": "DOUBLE EGG CHICKEN ROLL", "price": "RS. 105.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Roll31098.jpg"},
+        {"name": "CHICKEN HEALTHY WRAP (OIL FREE)", "price": "RS. 85.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Wrap89530.jpg"},
+        {"name": "PANEER HEALTHY WRAP (VEG)", "price": "RS. 85.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/paneer-kulcha-roll-scaled92364.jpg"},
+        {"name": "SOYA CHAAP ROLL", "price": "RS. 80.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Soya Chaap Roll21902.jpg"}
+      ]
+    },
+    {
+      "category_id": 13,
+      "category_name": "ROTI/PARATHA",
+      "item_count": 15,
+      "items": [
+        {"name": "LACHHA PARATHA", "price": "RS. 25.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/La Parata96229.jpg"},
+        {"name": "ALU PARATHA", "price": "RS. 100.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/AluP59324.jpg"},
+        {"name": "PANEER PARATHA", "price": "RS. 120.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/paneer-paratha65173.jpg"},
+        {"name": "EGG MUGHLAI PARATHA", "price": "RS. 100.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/mughlai-paratha73838.jpg"},
+        {"name": "CHICKEN MUGHLAI PARATHA", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/mughlai-paratha65259.jpg"},
+        {"name": "TAWA ROTI", "price": "RS. 6.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/roti7723.jpg"},
+        {"name": "BUTTER ROTI", "price": "RS. 12.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/But Roti21110.jpg"},
+        {"name": "TANDOORI ROTI", "price": "RS. 17.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/B T roti90766.jpg"},
+        {"name": "BUTTER TANDOORI ROTI", "price": "RS. 24.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/B T roti54021.jpg"},
+        {"name": "PLAIN NAN", "price": "RS. 27.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Nan43232.jpg"},
+        {"name": "BUTTER NAN", "price": "RS. 37.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Garlic-Naan93025.jpg"},
+        {"name": "GARLIC NAN", "price": "RS. 47.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Garlic-Naan5129.jpg"},
+        {"name": "MASALA KULCHA", "price": "RS. 47.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Kulcha64551.jpg"},
+        {"name": "ATTA TANDOORI ROTI", "price": "RS. 20.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (1)64682.jpeg"},
+        {"name": "ATTA LACHHA PARATHA", "price": "RS. 30.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (6)23873.jpeg"}
+      ]
+    },
+    {
+      "category_id": 14,
+      "category_name": "VEG MAIN COURSE",
+      "item_count": 32,
+      "items": [
+        {"name": "ALU BHAJA", "price": "RS. 65.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Alu Bhaja48074.jpg"},
+        {"name": "ALU DUM", "price": "RS. 100.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Aludum88760.jpg"},
+        {"name": "DAL TADKA", "price": "RS. 90.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Screenshot 2024-02-18 12294075678.jpg"},
+        {"name": "DAL FRY", "price": "RS. 100.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/dal-fry-with-makhana-recipe-main-photo91793.jpg"},
+        {"name": "CHANA MASALA", "price": "RS. 110.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/chana-masala-recipe-500x37542924.jpg"},
+        {"name": "MIXED VEG", "price": "RS. 110.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/sddefault (1)60920.jpg"},
+        {"name": "VEG MANCHURIAN", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Screenshot 2024-02-18 12025435032.jpg"},
+        {"name": "BABY CORN CHILLI (Gravy)", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/baby corn chilli gr75268.jpg"},
+        {"name": "BABY CORN MANCHURIAN", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/baby corn94884.jpg"},
+        {"name": "PANEER CHILLI", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Paneer Chilli Chk8007.jpg"},
+        {"name": "PANEER MANCHURIAN", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Paneer Man48656.jpg"},
+        {"name": "GARLIC PANEER", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Garlic93871.jpg"},
+        {"name": "PANEER DO PIYAZA", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (15)79983.jpg"},
+        {"name": "KADHAI PANEER", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (14)61487.jpg"},
+        {"name": "PANEER BHUNA MASALA", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (13)36522.jpg"},
+        {"name": "PANEER KASHMIRI", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (12)42197.jpg"},
+        {"name": "MATAR PANEER", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (11)21725.jpg"},
+        {"name": "PANEER BUTTER MASALA (6Pcs)", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (10)85496.jpg"},
+        {"name": "MUSHROM CHILII", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/mushroom-chilly-gravy11542.png"},
+        {"name": "MUSHROOM MANCHURIAN", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (9)27392.jpg"},
+        {"name": "MUSHROOM MASALA", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/mushroom-masala-curry90644.jpg"},
+        {"name": "KADHAI MUSHROOM", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (8)13283.jpg"},
+        {"name": "MUSHROOM DO PIYAZA", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (7)46188.jpg"},
+        {"name": "MATAR MUSHROOM MASALA", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/mushroom-matar-masala77502.jpg"},
+        {"name": "SOYA CHAAP CURRY", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Screen+Shot+2021-11-05+at+7.31.57+AM75288.jpg"},
+        {"name": "SOYA CHAAP CHILLI(SOYABIN)", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (2) (12)51673.jpeg"},
+        {"name": "SOYA CHAAP MANCHURIAN", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Soya95451.jpg"},
+        {"name": "JHURI ALU BHAJA", "price": "RS. 75.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Polish_20241113_20514567326542.jpg"},
+        {"name": "VEG DAL(MUNG/ARHAR)", "price": "RS. 50.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/default.png"},
+        {"name": "HOT GARLIC PANEER", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Garlic9387133453.jpg"},
+        {"name": "GARLIC PANEER SWEET", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Garlic9387176234.jpg"},
+        {"name": "ALU BHAJA", "price": "RS. 65.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Alu Bhaja4807444906.jpg"}
+      ]
+    },
+    {
+      "category_id": 15,
+      "category_name": "NON VEG MAIN COURSE",
+      "item_count": 29,
+      "items": [
+        {"name": "EGG CURRY", "price": "RS. 60.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/download (4)22257.jpg"},
+        {"name": "EGG TADKA", "price": "RS. 105.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Tadka89153.jpg"},
+        {"name": "DOUBLE EGG TADKA", "price": "RS. 120.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Tadka74771.jpg"},
+        {"name": "CHICKEN TADKA", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Tadka6127.jpg"},
+        {"name": "EGG CHICKEN TADKA", "price": "RS. 145.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Tadka19040.jpg"},
+        {"name": "CHICKEN KASA", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/chicken-kasa52333.jpg"},
+        {"name": "CHICKEN CURRY", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (18)29543.jpg"},
+        {"name": "CHICKEN DO PIYAZA", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/1200-by-1200-images-474685.jpg"},
+        {"name": "KADHAI CHICKEN", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (17)59846.jpg"},
+        {"name": "CHICKEN BHUNA MASALA", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Bhuna29798.jpg"},
+        {"name": "CHICKEN BLACK PEPPER", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/chicken-kali-mirch-recipe42893.jpg"},
+        {"name": "METHI CHICKEN", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/download (3)30044.jpg"},
+        {"name": "CHICKEN BHARTA", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/download (2)71570.jpg"},
+        {"name": "CHICKEN BUTTER MASALA", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/chi-reshmi69840.jpg"},
+        {"name": "CHICKEN TIKKA MASALA", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Screenshot 2024-02-18 1436223605.jpg"},
+        {"name": "CHICKEN TIKKA BUTTER MASALA", "price": "RS. 220.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Screenshot 2024-02-18 14362265551.jpg"},
+        {"name": "CHICKEN HANDI", "price": "RS. 280.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (16)96291.jpg"},
+        {"name": "TANDOORI CHICKEN MASALA", "price": "RS. 350.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/tchk90184.jpg"},
+        {"name": "CHILLI CHICKEN", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Chilli Chicken with Gravy_M224717.jpg"},
+        {"name": "GARLIC CHICKEN", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/HOT-GARLIC-CHICKEN-GRAVY-Cropped88220.jpg"},
+        {"name": "GARLIC CHICKEN SWEET", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/HOT-GARLIC-CHICKEN-GRAVY-Cropped32502.jpg"},
+        {"name": "GARLIC CHICKEN HOT", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/HOT-GARLIC-CHICKEN-GRAVY-Cropped75927.jpg"},
+        {"name": "CHICKEN MANCHURIAN", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Mn32919.jpg"},
+        {"name": "CHICKEN SCHEZWAN", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/photo (1)24894.jpg"},
+        {"name": "MUTTON KASA", "price": "RS. 270.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/shutterstock_173257969132726.jpg"},
+        {"name": "MUTTON CURRY", "price": "RS. 270.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/shutterstock_17325796914084.jpg"},
+        {"name": "MUTTON HANDI", "price": "RS. 400.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Mutton74976.jpg"},
+        {"name": "KANCHA LANKA MURG", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Kanchalanka Murg97091.jpeg"},
+        {"name": "OMELETTE", "price": "RS. 40.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (1) (16)22108.jpeg"}
+      ]
+    },
+    {
+      "category_id": 16,
+      "category_name": "COMBO/MEAL FOR ONE",
+      "item_count": 23,
+      "items": [
+        {"name": "DAL TADKA COMBO (ROTI)", "price": "RS. 90.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (2)80578.jpg"},
+        {"name": "EGG TADKA COMBO (ROTI)", "price": "RS. 95.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (2)61172.jpg"},
+        {"name": "ALU DUM COMBO (ROTI)", "price": "RS. 90.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Alu26876.jpg"},
+        {"name": "ALU DUM COMBO (PARATHA)", "price": "RS. 110.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Alu26624.jpg"},
+        {"name": "CHICKEN CURRY COMBO (ROTI)", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/30eea49bf87257252b79f61855bbe0b926606.jpg"},
+        {"name": "CHICKEN CURRY COMBO (RICE)", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Chk Curry Rice Combo76029.jpg"},
+        {"name": "PANEER MASALA COMBO (ROTI)", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/photo79591.jpg"},
+        {"name": "PANEER MASALA COMBO (TANDOORI ROTI)", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/paneer-butter-masala-or-cheese-cottage-curry-in-serving-a-bowl-or-pan-served-with-naan-or-tandoori-roti-2F5CKY838628.jpg"},
+        {"name": "PANEER MASALA COMBO (JEERA RICE)", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Jeera Rice combo5997.jpg"},
+        {"name": "TIKKA MASALA COMBO (ROTI)", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Tikka Masala Roti74064.jpg"},
+        {"name": "TIKKA MASALA COMBO (TANDOORI ROTI)", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/tikka masala tandoori combo46214.jpg"},
+        {"name": "TIKKA MASALA COMBO (JEERA RICE)", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Jeera Rice combo23758.jpg"},
+        {"name": "CHILLI CHICKEN COMBO (TANDOORI ROTI)", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Chilli Chk Troti cpombo57548.jpg"},
+        {"name": "CHILLI CHICKEN COMBO (PARATHA)", "price": "RS. 160.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Chilli Chk Partha Combo35478.jpg"},
+        {"name": "NOODLES COMBO (CHILLI CHICKEN)", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Noodles combo31427.jpg"},
+        {"name": "NOODLES COMBO (CHILLI PANEER)", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Noodles combo66159.jpg"},
+        {"name": "FRIED RICE COMBO (CHILLI CHK)", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/fried rice combo26297.jpg"},
+        {"name": "FRIED RICE COMBO (CHILLI PANEER)", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/fried rice combo36797.jpg"},
+        {"name": "CHILLI PANEER COMBO (PARATHA)", "price": "RS. 160.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Chilli Chk Partha Combo33129.jpg"},
+        {"name": "CHILLI PANEER COBO (TANDOORI ROTI)", "price": "RS. 160.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Chilli Chk Troti cpombo58626.jpg"},
+        {"name": "CHILLI PANEER COBO (TAWA ROTI)", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/e57227.jpg"},
+        {"name": "CHILLI CHICKEN COMBO (TAWA ROTI)", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/e22764.jpg"},
+        {"name": "CHICKEN CHAAP COMBO (PARATHA)", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/cHAAP21061.jpg"}
+      ]
+    },
+    {
+      "category_id": 17,
+      "category_name": "FISH DISHES",
+      "item_count": 12,
+      "items": [
+        {"name": "FISH CURRY", "price": "RS. 90.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (6)68431.jpg"},
+        {"name": "FISH SARSHE", "price": "RS. 100.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (5)91298.jpg"},
+        {"name": "FISH KALIA", "price": "RS. 100.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/sddefault87566.jpg"},
+        {"name": "DAHI KATLA", "price": "RS. 110.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/doikatla946711.jpg"},
+        {"name": "PABDA SARSHE", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Pabda48088.jpg"},
+        {"name": "GARLIC FISH GRAVY", "price": "RS. 240.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Garlic72666.jpg"},
+        {"name": "CHILLI FISH GRAVY", "price": "RS. 240.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Chilli Chicken15853.jpg"},
+        {"name": "FISH MANCHURIAN GRAVY", "price": "RS. 240.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Manchurian29938.jpg"},
+        {"name": "PRAWAN MSALA", "price": "RS. 220.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (4)27956.jpg"},
+        {"name": "PRAWN MALAI CURRY", "price": "RS. 220.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (3)81236.jpg"},
+        {"name": "FISH FINGER", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Fisg Finger7830689925.jpg"},
+        {"name": "FISH FRY", "price": "RS. 120.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Fish Fry7820481906.jpg"}
+      ]
+    },
+    {
+      "category_id": 18,
+      "category_name": "MOMO",
+      "item_count": 4,
+      "items": [
+        {"name": "CHICKEN MOMO STEAMED (6Pcs)", "price": "RS. 90.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/chicken_momo290404.jpg"},
+        {"name": "CHICKEN MOMO FRIED (6Pcs)", "price": "RS. 100.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/download (5)96615.jpg"},
+        {"name": "CHICKEN MOMO PAN FRIED (6Pcs)", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (20)50786.jpg"},
+        {"name": "CHICKEN MOMO TANDOOR", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/070417_WowMomos_0363365.jpg"}
+      ]
+    },
+    {
+      "category_id": 19,
+      "category_name": "COLD DRINKS",
+      "item_count": 2,
+      "items": [
+        {"name": "WATER 1LTR", "price": "RS. 25.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/1-liter-packaged-drinking-mineral-water-bottle43103.jpg"},
+        {"name": "750ML COKE", "price": "RS. 50.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Cold34360.jpg"}
+      ]
+    },
+    {
+      "category_id": 21,
+      "category_name": "SOUP",
+      "item_count": 2,
+      "items": [
+        {"name": "CHICKEN HOT & SOUR SOUP", "price": "RS. 100.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/HotSour Soup21953.jpg"},
+        {"name": "VEG HOT & SOUR SOUP", "price": "RS. 100.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/default.png"}
+      ]
+    },
+    {
+      "category_id": 22,
+      "category_name": "TANDOOR",
+      "item_count": 18,
+      "items": [
+        {"name": "TANDOORI EGG", "price": "RS. 130.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/1697119142-tandoori-egg56722.jpg"},
+        {"name": "CHICKEN TANGRI KABAB", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/download (11)69106.jpg"},
+        {"name": "CHICKEN TIKKA KABAB", "price": "RS. 240.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/download (10)27756.jpg"},
+        {"name": "CHICKEN RESHMI KABAB (6Pcs)", "price": "RS. 250.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/download (9)44272.jpg"},
+        {"name": "PANEER TIKKA", "price": "RS. 220.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/download (8)38049.jpg"},
+        {"name": "CHICKEN MALAI KABAB", "price": "RS. 270.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/malai82847.jpg"},
+        {"name": "CHICKEN CHEESE KABAB", "price": "RS. 270.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/download (7)59512.jpg"},
+        {"name": "CHICKEN AFGANI KABAB", "price": "RS. 260.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Afg9666.jpg"},
+        {"name": "CHICKEN BANJARA KABAB (6Pcs)", "price": "RS. 260.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/ban69220.jpg"},
+        {"name": "CHICKEN ACHARI KABAB", "price": "RS. 260.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Achari-Chciken-Tikka-Recipe-149967.jpg"},
+        {"name": "KABAB TAWA FRY", "price": "RS. 220.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/seekh-kebab-stir-fry-spicy1-480x27011002.jpg"},
+        {"name": "SOYA CHAAP TIKKA KABAB", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/soya chaap77145.jpg"},
+        {"name": "TANDOORI CHK (FULL)", "price": "RS. 480.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/tanddori cvhk59381.jpg"},
+        {"name": "TANDOORI CHK (HALF)", "price": "RS. 250.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/tanddori cvhk63306.jpg"},
+        {"name": "LASONI KABAB CHICKEN", "price": "RS. 260.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/lo40942.jpg"},
+        {"name": "CHICKEN SEEKH KABAB", "price": "RS. 160.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Seekh47709.jpg"},
+        {"name": "GREEN CHATNI(TANDOORI)", "price": "RS. 10.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/green27977.jpg"},
+        {"name": "SUNHERI KABAB", "price": "RS. 260.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Sunheri38080.jpg"}
+      ]
+    },
+    {
+      "category_id": 25,
+      "category_name": "NON VEG STARTER",
+      "item_count": 12,
+      "items": [
+        {"name": "FISH FRY", "price": "RS. 120.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Fish Fry78204.jpg"},
+        {"name": "FISH FINGER", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Fisg Finger78306.jpg"},
+        {"name": "CHICKEN PAKADA", "price": "RS. 160.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Chk Padaka17160.jpg"},
+        {"name": "SCHEZWAN EGG DRY", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Dry Egg Sch83771.jpg"},
+        {"name": "DRY CHILLI CHICKEN (6 Pcs)", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Dry CHK2039.jpg"},
+        {"name": "DRY GARLIC CHICKEN", "price": "RS. 190.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Dry GCHK70823.jpg"},
+        {"name": "CHICKEN LOLLIPOP/DRUMS OF HEAVEN", "price": "RS. 210.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Loli2504.jpg"},
+        {"name": "DRY CHILLI FISH", "price": "RS. 230.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Chilli Fish98487.jpg"},
+        {"name": "DRY GARLIC FISH", "price": "RS. 230.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Chilli-Fish37036.jpg"},
+        {"name": "CHICKEN 65", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (1)28397.jpg"},
+        {"name": "CHILI GARLIC PEPPER CHICKEN", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/220530_Black-Pepper-Chicken_238062.jpg"},
+        {"name": "SALT & PEPPER CHICKEN", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Salt-and-pepper-chicken-d66b26859398.jpg"}
+      ]
+    },
+    {
+      "category_id": 27,
+      "category_name": "SALAD & SAUCE & RAITA",
+      "item_count": 8,
+      "items": [
+        {"name": "GREEN SALAD", "price": "RS. 35.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/top-view-of-onion-tomato-salad-26509.jpg"},
+        {"name": "ONION SALAD", "price": "RS. 25.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Onion5886.jpg"},
+        {"name": "GREEN CHATNI(TANDOORI)", "price": "RS. 10.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (1)67698.jpg"},
+        {"name": "SAUCE DIP (SCHEZWAN)", "price": "RS. 20.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (1)92662.jpg"},
+        {"name": "RAITA", "price": "RS. 20.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images78838.jpg"},
+        {"name": "MAYONNAISE", "price": "RS. 10.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Screenshot_20240303_145150_Google79027.jpg"},
+        {"name": "TOMATO KETCHUP", "price": "RS. 10.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Screenshot_20240303_145150_Google52701.jpg"},
+        {"name": "MOMO SAUCE", "price": "RS. 10.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Screenshot_20240303_145150_Google81528.jpg"}
+      ]
+    },
+    {
+      "category_id": 28,
+      "category_name": "FLAVOUR'S FRIED CHICKEN",
+      "item_count": 3,
+      "items": [
+        {"name": "CHICKEN POPCORN", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Healthy-Crispy-chicken81405.jpg"},
+        {"name": "CHICKEN STRIPS", "price": "RS. 160.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images1978.jpg"},
+        {"name": "CRISPY CHICKEN WINGS", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/images (2)7866.jpg"}
+      ]
+    },
+    {
+      "category_id": 31,
+      "category_name": "PURE VEG DISHES",
+      "item_count": 6,
+      "items": [
+        {"name": "PURE VEG - DAL FRY", "price": "RS. 90.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/dal5781.jpg"},
+        {"name": "PURE VEG - ALU DUM", "price": "RS. 120.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Alu68470.jpg"},
+        {"name": "PURE VEG- PANEER MASALA", "price": "RS. 200.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/paneer71002.jpg"},
+        {"name": "PURE VEG - SOYA CHAAP CURRY", "price": "RS. 170.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Screenshot 2025-07-17 20352812043.jpg"},
+        {"name": "PURE VEG - PULAO ALU DUM COMBO", "price": "RS. 160.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Combo41630.jpg"},
+        {"name": "PURE VEG - ROTI PANEER MASALA COMBO", "price": "RS. 150.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/default.png"}
+      ]
+    },
+    {
+      "category_id": 32,
+      "category_name": "RICE NOODLES (Mei-Foon)",
+      "item_count": 12,
+      "items": [
+        {"name": "RICE NOODLES VEG (Mei-Foon)", "price": "RS. 125.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice8383.jpg"},
+        {"name": "RICE NOODLES -EGG (Mei-Foon)", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice25350.jpg"},
+        {"name": "RICE NOODLES -CHICKEN(Mei-Foon)", "price": "RS. 165.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice67791.jpg"},
+        {"name": "RICE NOODLES -EGG CHICKEN (Mei-Foon)", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice61929.jpg"},
+        {"name": "RICE NOODLES -MIXED (Mei-Foon)", "price": "RS. 220.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice76608.jpg"},
+        {"name": "SCHEZWAN RICE NOODLES -MIXED (Mei-Foon)", "price": "RS. 235.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice27026.jpg"},
+        {"name": "SCHEZWAN RICE NOODLES -EGG CHICKEN(Mei-Foon)", "price": "RS. 195.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice88615.jpg"},
+        {"name": "SCHEZWAN RICE NOODLES -CHICKEN(Mei-Foon)", "price": "RS. 180.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice51298.jpg"},
+        {"name": "SCHEZWAN RICE NOODLES -EGG(Mei-Foon)", "price": "RS. 155.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice25828.jpg"},
+        {"name": "SCHEZWAN RICE NOODLES -VEG(Mei-Foon)", "price": "RS. 140.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice75212.jpg"},
+        {"name": "RICE NOODLES -MUSHROOM (Mei-Foon)", "price": "RS. 165.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice64602.jpg"},
+        {"name": "RICE NOODLES -PANEER(Mei-Foon)", "price": "RS. 165.00/-", "image": "https://www.flavoursbattleofbuds.in/uploads/product_images/Rice83645.jpg"}
+      ]
+    }
+  ],
+  "total_items": 296
+}

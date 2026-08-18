@@ -2,16 +2,31 @@ import { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
 
+function generateGuestId() {
+  const existing = localStorage.getItem('flavours_guest_id');
+  if (existing) return existing;
+  const id = 'guest-' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+  localStorage.setItem('flavours_guest_id', id);
+  return id;
+}
+
+function getOrCreateGuestUser() {
+  const saved = localStorage.getItem('flavours_user');
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    if (parsed && parsed.id) return parsed;
+  }
+  const guest = { id: generateGuestId(), name: 'Guest', phone: '' };
+  localStorage.setItem('flavours_user', JSON.stringify(guest));
+  return guest;
+}
+
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('flavours_user');
-    return saved ? JSON.parse(saved) : null;
-  });
+  const [user, setUser] = useState(() => getOrCreateGuestUser());
   const [orderType, setOrderType] = useState(() => localStorage.getItem('flavours_order_type') || null);
 
   useEffect(() => {
     if (user) localStorage.setItem('flavours_user', JSON.stringify(user));
-    else localStorage.removeItem('flavours_user');
   }, [user]);
 
   useEffect(() => {
@@ -19,12 +34,10 @@ export function AuthProvider({ children }) {
     else localStorage.removeItem('flavours_order_type');
   }, [orderType]);
 
-  const login = (userData) => setUser(userData);
-  const logout = () => { setUser(null); setOrderType(null); localStorage.clear(); };
   const selectOrderType = (type) => setOrderType(type);
 
   return (
-    <AuthContext.Provider value={{ user, orderType, login, logout, selectOrderType }}>
+    <AuthContext.Provider value={{ user, orderType, selectOrderType }}>
       {children}
     </AuthContext.Provider>
   );

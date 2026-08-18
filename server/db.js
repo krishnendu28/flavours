@@ -1,7 +1,12 @@
 const Database = require('better-sqlite3');
 const path = require('path');
+const fs = require('fs');
 
-const db = new Database(path.join(__dirname, '..', 'flavours_bob.db'));
+const dbPath = process.env.RENDER
+  ? path.join('/tmp', 'flavours_bob.db')
+  : path.join(__dirname, '..', 'flavours_bob.db');
+
+const db = new Database(dbPath);
 
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
@@ -147,6 +152,42 @@ if (orderCols.includes('user_id')) {
     db.exec(`ALTER TABLE orders_new RENAME TO orders`);
     db.pragma('foreign_keys = ON');
     console.log('Orders table migrated successfully');
+  }
+}
+
+// Auto-seed from flavours_menu.json if database is empty (e.g. Render cold start)
+const catCount = db.prepare('SELECT COUNT(*) as c FROM categories').get().c;
+if (catCount === 0) {
+  console.log('Database empty — seeding from flavours_menu.json...');
+  const menuPath = path.join(__dirname, '..', 'flavours_menu.json');
+  if (fs.existsSync(menuPath)) {
+    const menuData = JSON.parse(fs.readFileSync(menuPath, 'utf8'));
+    const bcrypt = require('bcryptjs');
+    const { v4: uuidv4 } = require('uuid');
+
+    const insertCat = db.prepare('INSERT INTO categories (name, sort_order) VALUES (?, ?)');
+    const insertItem = db.prepare('INSERT INTO menu_items (category_id, name, description, price, image_url, available, available_dine_in, available_takeaway, available_delivery, code) VALUES (?, ?, ?, ?, ?, 1, 1, 1, 1, ?)');
+    const insertAdmin = db.prepare('INSERT OR IGNORE INTO admins (username, password) VALUES (?, ?)');
+
+    let nextCode = 1;
+    const seedAll = db.transaction(() => {
+      let sortOrder = 0;
+      for (const cat of menuData.categories) {
+        insertCat.run(cat.category_name, sortOrder++);
+        for (const item of cat.items) {
+          const price = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+          const image = item.image && !item.image.includes('default.png') ? item.image : null;
+          insertItem.run(cat.category_id, item.name, '', price, image, nextCode++);
+        }
+      }
+      const adminPassword = bcrypt.hashSync('admin123', 10);
+      insertAdmin.run('admin', adminPassword);
+      insertAdmin.run('flavoursbob', adminPassword);
+    });
+    seedAll();
+    console.log(`Seeded ${nextCode - 1} menu items from flavours_menu.json`);
+  } else {
+    console.error('flavours_menu.json not found — cannot seed');
   }
 }
 

@@ -1,313 +1,142 @@
 const db = require('./db');
 
-// Comprehensive image mapping by food category/type
-const CATEGORY_IMAGES = {
-  // Biryani
-  'Biryani': [
-    'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=80',
-    'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&q=80',
-    'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80',
-    'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=80',
-    'https://images.unsplash.com/photo-1625398407796-82650a8c135f?w=400&q=80',
-    'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400&q=80',
-    'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-    'https://images.unsplash.com/photo-1645177628172-a94c1f96e6db?w=400&q=80',
-    'https://images.unsplash.com/photo-1630383249896-424e482df921?w=400&q=80',
-  ],
-  // Thali
-  'Regular Thali': [
-    'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80',
-    'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80',
-    'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80',
-  ],
-  'Special Thali': [
-    'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80',
-    'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80',
-    'https://images.unsplash.com/photo-1567364816519-cbc9c4fff6d7?w=400&q=80',
-    'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=80',
-    'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400&q=80',
-  ],
-  // Rice
-  'Rice': [
-    'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400&q=80',
-    'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&q=80',
-    'https://images.unsplash.com/photo-1516684732162-798a0062be99?w=400&q=80',
-    'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-    'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=80',
-    'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=80',
-  ],
-  // Noodles
-  'Noodles': [
-    'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=80',
-    'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&q=80',
-    'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&q=80',
-    'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400&q=80',
-    'https://images.unsplash.com/photo-1555126634-323283e090fa?w=400&q=80',
-  ],
-  // Veg Starter
-  'Veg Starter': [
-    'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80',
-    'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400&q=80',
-    'https://images.unsplash.com/photo-1625398407796-82650a8c135f?w=400&q=80',
-    'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-  ],
-  // Roll
-  'Roll': [
-    'https://images.unsplash.com/photo-1626132647523-66f5bf380027?w=400&q=80',
-    'https://images.unsplash.com/photo-1600688640154-9619e002df30?w=400&q=80',
-    'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-    'https://images.unsplash.com/photo-1625398407796-82650a8c135f?w=400&q=80',
-  ],
-  // Roti/Paratha
-  'Roti/Paratha': [
-    'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80',
-    'https://images.unsplash.com/photo-1586444248879-bc604cbd555a?w=400&q=80',
-    'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-    'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-  ],
-  // Veg Main Course
-  'Veg Main Course': [
-    'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80',
-    'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80',
-    'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80',
-    'https://images.unsplash.com/photo-1567364816519-cbc9c4fff6d7?w=400&q=80',
-    'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-    'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=80',
-  ],
-  // Non Veg Main Course
-  'Non Veg Main Course': [
-    'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&q=80',
-    'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-    'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=80',
-    'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80',
-    'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-  ],
-  // Combo/Meal
-  'Combo/Meal for One': [
-    'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80',
-    'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80',
-    'https://images.unsplash.com/photo-1567364816519-cbc9c4fff6d7?w=400&q=80',
-    'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80',
-  ],
-  // Fish
-  'Fish Dishes': [
-    'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&q=80',
-    'https://images.unsplash.com/photo-1534604973900-c43ce4d7b3c7?w=400&q=80',
-    'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80',
-    'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-  ],
-  // Momo
-  'Momo': [
-    'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80',
-    'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&q=80',
-    'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80',
-  ],
-  // Cold Drinks
-  'Cold Drinks': [
-    'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&q=80',
-    'https://images.unsplash.com/photo-1581006852262-e4307cf62839?w=400&q=80',
-  ],
-  // Soup
-  'Soup': [
-    'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80',
-    'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&q=80',
-  ],
-  // Tandoor
-  'Tandoor': [
-    'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-    'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&q=80',
-    'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80',
-    'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-    'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=80',
-  ],
-  // Non Veg Starter
-  'Non Veg Starter': [
-    'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-    'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&q=80',
-    'https://images.unsplash.com/photo-1625398407796-82650a8c135f?w=400&q=80',
-    'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400&q=80',
-  ],
-  // Salad & Sauce
-  'Salad & Sauce & Raita': [
-    'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80',
-    'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80',
-    'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-  ],
-  // Fried Chicken
-  "Flavour's Fried Chicken": [
-    'https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80',
-    'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=400&q=80',
-    'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=400&q=80',
-  ],
-  // Pure Veg
-  'Pure Veg Dishes': [
-    'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80',
-    'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80',
-    'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80',
-    'https://images.unsplash.com/photo-1567364816519-cbc9c4fff6d7?w=400&q=80',
-    'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-  ],
-  // Rice Noodles
-  'Rice Noodles / Mei-Foon': [
-    'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=80',
-    'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&q=80',
-    'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&q=80',
-    'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400&q=80',
-  ],
-};
+const IMG = 'https://www.flavoursbattleofbuds.in/uploads/product_images';
 
-// Name-based overrides for more specific images
 const NAME_OVERRIDES = {
-  // Biryani specific
-  'Chicken Biryani': 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=80',
-  'Mutton Biryani': 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=400&q=80',
-  'Egg Biryani': 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80',
-  'Veg Biryani': 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=80',
-  'Soya Biryani': 'https://images.unsplash.com/photo-1625398407796-82650a8c135f?w=400&q=80',
-  'Paneer Biryani': 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400&q=80',
-  'Mushroom Biryani': 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-  'Chicken Keema Biryani': 'https://images.unsplash.com/photo-1645177628172-a94c1f96e6db?w=400&q=80',
-  'Chicken Tikka Biryani': 'https://images.unsplash.com/photo-1630383249896-424e482df921?w=400&q=80',
-  'Special Chicken Biryani': 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=80',
-  
-  // Thali
-  'Regular Veg Thali': 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80',
-  'Regular Egg Thali': 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80',
-  'Regular Chicken Thali': 'https://images.unsplash.com/photo-1567364816519-cbc9c4fff6d7?w=400&q=80',
-  'Regular Mutton Thali': 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&q=80',
-  'Regular Fish Thali': 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&q=80',
-  'Special Veg Thali - Roti': 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80',
-  'Special Egg Thali - Roti': 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80',
-  'Special Fish Thali - Roti': 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&q=80',
-  'Special Chicken Thali - Roti': 'https://images.unsplash.com/photo-1567364816519-cbc9c4fff6d7?w=400&q=80',
-  'Regular Fish Thali': 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&q=80',
-  'Jhuri Alu Bhaja': 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-  'Shabji Dal': 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80',
-  'Regular Shabji': 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80',
+  // ── BIRYANI (confirmed from /home/items?id=6) ──
+  'Combo Egg Biryani +Chaap': `${IMG}/images20253.jpeg`,
+  'Combo Chicken Biryani + Chaap': `${IMG}/images (1)34849.jpeg`,
+  'Tikka Handi Biryani': `${IMG}/Tikka h18649.jpg`,
+  'Mutton Handi Biryani': `${IMG}/Mut Handi B46214.jpg`,
+  'Chicken Handi Biryani': `${IMG}/Biryani16651.jpeg`,
+  'Egg Handi Biryani': `${IMG}/Egg72854.jpeg`,
+  'Extra Chicken Piece': `${IMG}/default.png`,
 
-  // Rice specific
-  'Jeera Rice': 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400&q=80',
-  'Sweet Pulao': 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&q=80',
-  'Veg Fried Rice': 'https://images.unsplash.com/photo-1516684732162-798a0062be99?w=400&q=80',
-  'Egg Fried Rice': 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-  'Chicken Fried Rice': 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=80',
-  'Prawn Fried Rice': 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80',
-  'Mixed Fried Rice': 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=80',
+  // ── REGULAR THALI (confirmed from home page) ──
+  'Regular Veg Thali': `${IMG}/Thali94759.jpg`,
+  'Regular Egg Thali': `${IMG}/Thali78349.jpg`,
+  'Regular Fish Thali': `${IMG}/Thali63185.jpg`,
+  'Regular Chicken Thali': `${IMG}/Thali56447.jpg`,
+  'Regular Mutton Thali': `${IMG}/IMG_20231228_10222246259.jpg`,
+  'Regular Pabda Thali': `${IMG}/Thali40895.jpg`,
+  'Regular Prawn Thali': `${IMG}/Thali7759.jpg`,
 
-  // Noodles specific
-  'Veg Noodles': 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=80',
-  'Egg Noodles': 'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&q=80',
-  'Chicken Noodles': 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&q=80',
-  'Mixed Noodles': 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400&q=80',
-  'Schezwan Veg Noodles': 'https://images.unsplash.com/photo-1555126634-323283e090fa?w=400&q=80',
+  // ── SPECIAL THALI (confirmed from home page) ──
+  'Special Veg Thali': `${IMG}/Thali81297.jpg`,
+  'Special Egg Thali': `${IMG}/Thali87486.jpg`,
+  'Special Fish Thali': `${IMG}/Thali11256.jpg`,
+  'Special Chicken Thali': `${IMG}/Thali57244.jpg`,
 
-  // Roti/Paratha
-  'Lachha Paratha': 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80',
-  'Alu Paratha': 'https://images.unsplash.com/photo-1586444248879-bc604cbd555a?w=400&q=80',
-  'Paneer Paratha': 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-  'Egg Mughlai Paratha': 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-  'Chicken Mughlai Paratha': 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&q=80',
-  'Butter Naan': 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80',
-  'Garlic Naan': 'https://images.unsplash.com/photo-1586444248879-bc604cbd555a?w=400&q=80',
-  'Plain Naan': 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
+  // ── RICE (confirmed from /home/items?id=9) ──
+  'Steamed Rice': `${IMG}/Steamed-Rice-Basmati50949.jpg`,
+  'Jeera Rice': `${IMG}/jeera-rice-recipe73760.jpg`,
+  'Sweet Pulao': `${IMG}/Mishti-Pulao-2-1-1200x180040511.jpg`,
+  'Veg Fried Rice': `${IMG}/Veg-Fried-Rice-482077.jpg`,
+  'Egg Fried Rice': `${IMG}/Veg-Fried-Rice-442689.jpg`,
+  'Chicken Fried Rice': `${IMG}/Veg-Fried-Rice-429623.jpg`,
+  'Egg Chicken Fried Rice': `${IMG}/Veg-Fried-Rice-43458.jpg`,
+  'Mushroom Fried Rice': `${IMG}/Veg-Fried-Rice-466996.jpg`,
+  'Paneer Fried Rice': `${IMG}/Veg-Fried-Rice-495279.jpg`,
+  'Prawn Fried Rice': `${IMG}/Veg-Fried-Rice-466570.jpg`,
+  'Mixed Fried Rice': `${IMG}/Veg-Fried-Rice-460540.jpg`,
+  'Schezwan Veg Fried Rice': `${IMG}/Veg-Fried-Rice-469818.jpg`,
+  'Schezwan Egg Fried Rice': `${IMG}/Veg-Fried-Rice-494923.jpg`,
+  'Schezwan Chicken Fried Rice': `${IMG}/Veg-Fried-Rice-486649.jpg`,
+  'Schezwan Egg Chicken Fried Rice': `${IMG}/Veg-Fried-Rice-410782.jpg`,
+  'Schezwan Mushroom Fried Rice': `${IMG}/Veg-Fried-Rice-434556.jpg`,
+  'Schezwan Paneer Fried Rice': `${IMG}/Veg-Fried-Rice-482615.jpg`,
+  'Schezwan Prawn Fried Rice': `${IMG}/Veg-Fried-Rice-410070.jpg`,
+  'Schezwan Mixed Fried Rice': `${IMG}/Veg-Fried-Rice-437859.jpg`,
 
-  // Veg Main Course
-  'Paneer Butter Masala (6 Pcs)': 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80',
-  'Kadhai Paneer': 'https://images.unsplash.com/photo-1567364816519-cbc9c4fff6d7?w=400&q=80',
-  'Paneer Chilli': 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80',
-  'Dal Tadka': 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80',
-  'Dal Fry': 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80',
-  'Mixed Veg': 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80',
-  'Mushroom Masala': 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
+  // ── NOODLES (confirmed from /home/items?id=10) ──
+  'Veg Noodles': `${IMG}/veg-noodles-vegetable-noodles52788.jpg`,
+  'Egg Noodles': `${IMG}/veg-noodles-vegetable-noodles47774.jpg`,
+  'Chicken Noodles': `${IMG}/veg-noodles-vegetable-noodles49313.jpg`,
+  'Egg Chicken Noodles': `${IMG}/veg-noodles-vegetable-noodles47715.jpg`,
+  'Mushroom Noodles': `${IMG}/veg-noodles-vegetable-noodles70220.jpg`,
+  'Paneer Noodles': `${IMG}/veg-noodles-vegetable-noodles19847.jpg`,
+  'Prawn Noodles': `${IMG}/veg-noodles-vegetable-noodles1715.jpg`,
+  'Mixed Noodles': `${IMG}/veg-noodles-vegetable-noodles10873.jpg`,
+  'Schezwan Veg Noodles': `${IMG}/veg-noodles-vegetable-noodles27050.jpg`,
+  'Schezwan Egg Noodles': `${IMG}/veg-noodles-vegetable-noodles47826.jpg`,
+  'Schezwan Chicken Noodles': `${IMG}/veg-noodles-vegetable-noodles16774.jpg`,
+  'Schezwan Egg Chicken Noodles': `${IMG}/veg-noodles-vegetable-noodles59247.jpg`,
+  'Schezwan Mushroom Noodles': `${IMG}/veg-noodles-vegetable-noodles77220.jpg`,
+  'Schezwan Paneer Noodles': `${IMG}/veg-noodles-vegetable-noodles83923.jpg`,
+  'Schezwan Prawn Noodles': `${IMG}/veg-noodles-vegetable-noodles25701.jpg`,
+  'Schezwan Mixed Noodles': `${IMG}/veg-noodles-vegetable-noodles17243.jpg`,
+  'Chilli Garlic Egg Noodles': `${IMG}/images (2)46905.jpg`,
+  'Chilli Garlic Veg Noodles': `${IMG}/images (2)74842.jpg`,
+  'Chilli Garlic Chicken Noodles': `${IMG}/images (2)42977.jpg`,
+  'Chilli Garlic Egg Chicken Noodles': `${IMG}/images (2)3319.jpg`,
+  'Chilli Garlic Mixed Noodles': `${IMG}/images (2)5656.jpg`,
 
-  // Non Veg
-  'Chicken Curry': 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&q=80',
-  'Mutton Curry': 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-  'Chicken Butter Masala': 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=80',
-  'Chicken Tikka Masala': 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80',
-  'Chicken Chaap': 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-  'Mutton Chaap': 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&q=80',
-  'Chicken Kasha': 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80',
-  'Mutton Kasha': 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-  'Chicken Kosha': 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&q=80',
-  'Mutton Kosha': 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
+  // ── VEG MAIN COURSE (confirmed from /home/items?id=14) ──
+  'Alu Bhaja': `${IMG}/Alu Bhaja48074.jpg`,
+  'Alu Dum': `${IMG}/Aludum88760.jpg`,
+  'Dal Tadka': `${IMG}/Screenshot 2024-02-18 12294075678.jpg`,
+  'Dal Fry': `${IMG}/dal-fry-with-makhana-recipe-main-photo91793.jpg`,
+  'Chana Masala': `${IMG}/chana-masala-recipe-500x37542924.jpg`,
+  'Mixed Veg': `${IMG}/sddefault (1)60920.jpg`,
+  'Veg Manchurian': `${IMG}/Screenshot 2024-02-18 12025435032.jpg`,
+  'Baby Corn Chilli (Gravy)': `${IMG}/baby corn chilli gr75268.jpg`,
+  'Baby Corn Manchurian': `${IMG}/baby corn94884.jpg`,
+  'Paneer Chilli': `${IMG}/Paneer Chilli Chk8007.jpg`,
+  'Paneer Manchurian': `${IMG}/Paneer Man48656.jpg`,
+  'Garlic Paneer': `${IMG}/Garlic93871.jpg`,
+  'Paneer Do Piyaza': `${IMG}/images (15)79983.jpg`,
+  'Kadhai Paneer': `${IMG}/images (14)61487.jpg`,
+  'Paneer Bhuna Masala': `${IMG}/images (13)36522.jpg`,
+  'Paneer Kashmiri': `${IMG}/images (12)42197.jpg`,
+  'Matar Paneer': `${IMG}/images (11)21725.jpg`,
+  'Paneer Butter Masala (6Pcs)': `${IMG}/images (10)85496.jpg`,
+  'Paneer Butter Masala (6 Pcs)': `${IMG}/images (10)85496.jpg`,
+  'Mushrom Chilii': `${IMG}/mushroom-chilly-gravy11542.png`,
+  'Mushroom Chilli': `${IMG}/mushroom-chilly-gravy11542.png`,
+  'Mushroom Manchurian': `${IMG}/images (9)27392.jpg`,
+  'Mushroom Masala': `${IMG}/mushroom-masala-curry90644.jpg`,
+  'Kadhai Mushroom': `${IMG}/images (8)13283.jpg`,
+  'Mushroom Do Piyaza': `${IMG}/images (7)46188.jpg`,
+  'Matar Mushroom Masala': `${IMG}/mushroom-matar-masala77502.jpg`,
+  'Soya Chaap Curry': `${IMG}/Screen+Shot+2021-11-05+at+7.31.57+AM75288.jpg`,
+  'Soya Chaap Chilli(Soyabin)': `${IMG}/images (2) (12)51673.jpeg`,
+  'Soya Chaap Chilli (Soyabin)': `${IMG}/images (2) (12)51673.jpeg`,
+  'Soya Chaap Manchurian': `${IMG}/Soya95451.jpg`,
+  'Jhuri Alu Bhaja': `${IMG}/Polish_20241113_20514567326542.jpg`,
+  'Veg Dal(Mung/Arhar)': `${IMG}/default.png`,
+  'Hot Garlic Paneer': `${IMG}/Garlic9387133453.jpg`,
+  'Garlic Paneer Sweet': `${IMG}/Garlic9387176234.jpg`,
 
-  // Tandoor
-  'Tandoori Chicken (Full)': 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-  'Tandoori Chicken (Half)': 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80',
-  'Chicken Tikka Kabab': 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&q=80',
-  'Paneer Tikka': 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80',
-
-  // Starter
-  'Chicken Lollipop/Drums of Heaven': 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80',
-  'Chicken 65': 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=400&q=80',
-  'Dry Chilli Chicken (6 Pcs)': 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=400&q=80',
-
-  // Fried Chicken
-  'Chicken Popcorn': 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80',
-  'Chicken Strips': 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=400&q=80',
-  'Crispy Chicken Wings': 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=400&q=80',
-
-  // Fish
-  'Fish Curry': 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&q=80',
-  'Fish Fry': 'https://images.unsplash.com/photo-1534604973900-c43ce4d7b3c7?w=400&q=80',
-  'Fish Finger': 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80',
-  'Prawn Malai Curry': 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-  'Prawn Masala': 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-
-  // Salad
-  'Green Salad': 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80',
-  'Tomato Ketchup': 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&q=80',
-  'Mayonnaise': 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80',
-
-  // Drinks
-  'Water 1 Ltr': 'https://images.unsplash.com/photo-1523362628745-0c100fc988a6?w=400&q=80',
-  '750ML Coke': 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&q=80',
-
-  // Soup
-  'Chicken Hot & Sour Soup': 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80',
-  'Veg Hot & Sour Soup': 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&q=80',
-
-  // Momo
-  'Chicken Momo Steamed (6 Pcs)': 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80',
-  'Chicken Momo Fried (6 Pcs)': 'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&q=80',
-  'Chicken Momo Pan Fried (6 Pcs)': 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80',
-  'Chicken Momo Tandoor': 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80',
+  // ── RAITA / SALAD (from Biryani page) ──
+  'Raita': `${IMG}/Raita97236.jpg`,
+  'Onion Salad': `${IMG}/Onion588611069.jpg`,
 };
 
 const cats = db.prepare('SELECT id, name FROM categories ORDER BY sort_order').all();
 const catMap = Object.fromEntries(cats.map(c => [c.name, c.id]));
 
 const items = db.prepare('SELECT id, name, category_id, image_url FROM menu_items').all();
-const missing = items.filter(i => !i.image_url);
 
 let updated = 0;
+let matched = 0;
+let noMatch = 0;
 const stmt = db.prepare('UPDATE menu_items SET image_url = ? WHERE id = ?');
 
 const updateAll = db.transaction(() => {
-  for (const item of missing) {
-    let imgUrl = null;
-
-    // Check name override first
-    if (NAME_OVERRIDES[item.name]) {
-      imgUrl = NAME_OVERRIDES[item.name];
-    } else {
-      // Find category name
-      const catName = Object.entries(catMap).find(([_, id]) => id === item.category_id)?.[0];
-      if (catName && CATEGORY_IMAGES[catName]) {
-        const imgs = CATEGORY_IMAGES[catName];
-        // Use item ID to pick a consistent image
-        imgUrl = imgs[item.id % imgs.length];
-      }
-    }
-
-    if (imgUrl) {
+  for (const item of items) {
+    const imgUrl = NAME_OVERRIDES[item.name] || null;
+    if (imgUrl && imgUrl !== item.image_url) {
       stmt.run(imgUrl, item.id);
       updated++;
+      matched++;
+    } else if (imgUrl) {
+      matched++;
+    } else {
+      noMatch++;
     }
   }
 });
 
 updateAll();
-console.log(`Updated ${updated} items with images`);
-console.log(`Total items: ${items.length}, Previously had images: ${items.length - missing.length}, Now all have images: ${items.length - missing.length + updated}`);
+console.log(`Updated ${updated} items (replaced Unsplash with real BOB images)`);
+console.log(`Matched: ${matched}, No match: ${noMatch}, Total: ${items.length}`);

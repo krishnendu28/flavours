@@ -36,7 +36,7 @@ function isItemAvailable(item, orderType) {
 
 export default function Menu() {
   const navigate = useNavigate();
-  const { user, orderType, logout } = useAuth();
+  const { user, orderType } = useAuth();
   const { on } = useSocket();
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
@@ -57,7 +57,6 @@ export default function Menu() {
   const cartDrawerRef = useRef(null);
 
   useEffect(() => {
-    if (!user) { navigate('/login'); return; }
     if (!orderType) { navigate('/'); return; }
     Promise.all([api.getCategories(), api.getMenuItems()])
       .then(([cats, allItems]) => {
@@ -195,10 +194,6 @@ export default function Menu() {
           </div>
           <div className="header-nav">
             <button onClick={() => navigate('/orders')} style={{ fontSize: 14 }}>My Orders</button>
-            <span className="user-badge">
-              <strong>{user?.name}</strong>
-            </span>
-            <button onClick={logout}>Logout</button>
           </div>
         </div>
       </header>

@@ -29,7 +29,7 @@ export default function OrderHistory() {
   const [expandedId, setExpandedId] = useState(null);
 
   useEffect(() => {
-    if (!user) { navigate('/login'); return; }
+    if (!user) return;
     api.getUserOrders(user.id).then(o => {
       setOrders(o);
       setLoading(false);
@@ -69,7 +69,6 @@ export default function OrderHistory() {
           </div>
           <div className="header-nav">
             <button onClick={() => navigate('/menu')}>Menu</button>
-            <span className="user-badge"><strong>{user?.name}</strong></span>
           </div>
         </div>
       </header>
